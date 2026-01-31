@@ -58,6 +58,11 @@ I don't know at this point, i will be probably compiling my code into C so it's 
 
 And i will be doing research for the next few weeks and doing my regular tasks for the software team until then i will pause the work on EKF. Once i know more and find more solutions to make the filter more accurate im gonna tweak it occasionally and that would be it. 
 
+# What code does what?
+
+NaPrzEKF is the old code with 3 states, keeping it mostly for writing my thesis sake to show the evolution.
+
+NaPrzEKFWindTest is the new overhauled 4 state version, which will be tweaked in the coming weeks to improve it.
 
 
 
