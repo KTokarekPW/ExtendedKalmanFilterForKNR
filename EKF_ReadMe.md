@@ -22,3 +22,42 @@ I will be adding state spaces for temperature gradient that i will simply model 
 
 Additionally i will be adding wind, which will work very similarly but will be a sine wave function over time, that will change the reading of my pressure sensor by the pressure change from the wind.
 
+
+## 31.01.2026 COMMIT Wind Added
+
+Added wind as the 4th variable in the state space, simulated wind using simplified model of a sine wave. Overhauled the simultion massively to aid in tuning all the parameters, managed to achieve MAE of 0.3m, which considering the subpar gps module and IMU is in my opinion and impresssive feat.
+
+# Whats the new code about? It is pretty well documented, hence i will not waste my time explaining the details, ill explain my choices here:
+
+# Why the pseude doppler and not discrete integration when calculating v_gps? 
+
+Discrete integration, has it's drawbacks, we integrate a very noised out signal. Meaning that it leads to enourmous errors, hence i used this algorithm. 
+If you are curios how much of a difference does it make, the MAE of position goes up to 0.8 from 0.3 when using the discreet integration so it's basically worthless.
+
+# Why the sine wave as a wind approximation, when there are better approximations?
+
+Yes, but they don't change fundamentally what my filter does and it was quick and easy to code. Essentially my filter doesn't know it's a sine wave, it only knows it changes.
+
+# Why don't you add temperature into the equation?
+
+Temperature only changes the readings (substantially) of one sensor the pitot tube, but mine has a buiilt in system to combat the temperature noise(from what the manufacturer wrote atleast). 
+
+We will see about that in real world testing for my engineering thesis in a year. I highly doubt it's as effective as they proclaim.
+
+# Why the sudden use of functions? 
+
+My code is unreadable without them.
+
+# Why the sudden overhaul and addition of scripts to make plots?
+
+So i can troubleshoot better
+
+# What are you planning to add/do next?
+
+I don't know at this point, i will be probably compiling my code into C so it's faster to run. And then try running it on the Rasperry Pi 5 we have onboard our drone, it will probably lag it to death though.
+
+And i will be doing research for the next few weeks and doing my regular tasks for the software team until then i will pause the work on EKF. Once i know more and find more solutions to make the filter more accurate im gonna tweak it occasionally and that would be it. 
+
+
+
+
